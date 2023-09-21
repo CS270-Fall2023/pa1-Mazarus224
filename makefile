@@ -1,16 +1,18 @@
--w = -Wall
+CC = gcc
+FLAGS = -Wall -g
+OFLAGS = -Wall -g -c
 
 PA1: main.o PA1.o
-	gcc -w PA1.o main.o -o PA1
+	$(CC) $(FLAGS) $< PA1.o -o $@
 
 PA1.o: PA1.c PA1.h
-	gcc -c PA1.c PA1.h
+	$(CC) $(OFLAGS) $<
 
 main.o: main.c PA1.h
-	gcc -c main.c PA1.h 
+	$(CC) $(OFLAGS) $<  
 
 clean:
 	rm *.o PA1 
 
 all:
-	gcc PA1.h PA1.c main.c -o PA1
+	$(CC) $(FLAGS) PA1.h PA1.c main.c -o PA1
